@@ -21,4 +21,11 @@ What technologies will it use?
   HTML, CSS, Materialize, JavaScript, jQuery, a makeshift server
 
 What additional features will it have?
-  
+
+
+//////////////////////////////////////////////////////////////
+AFTER
+
+What was the most valuable piece of Customer feedback you received?
+
+What was the biggest challenge you had to overcome?
