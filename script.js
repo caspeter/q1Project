@@ -29,8 +29,6 @@ $(document).ready(function() {
         //     scaleY: 3
         // })
 
-        //clear canvas so that the old boxes go away
-        myCanvas.clearCanvas();
         //for each object in the array, each person
         for (var i = 0; i < data.length; i++) {
             // console.log('object in data: ', data[i]); // this gets the individual object (one person's data)
@@ -64,6 +62,8 @@ $(document).ready(function() {
         // console.log(body); //this shows that the url has changed
         //change the body object into something JSON can read
         body = JSON.stringify(body);
+        //clear canvas so that the old boxes go away
+        myCanvas.clearCanvas();
         //add the src to the img tag, the src being the input value
         $(addImg).attr("src", inputVal);
         // console.log($('#emotion-img')); //make sure the img tag got into the div
