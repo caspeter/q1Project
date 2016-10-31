@@ -6,11 +6,22 @@ $(document).ready(function() {
         url: ''
     };
 
+    //to iterate over the boxes data
+    function displayBoxes(data) {
+        console.log('displayBoxes: ', data); //shows we grab the data
+        //for each person in the data
+        for (var i = 0; i < data.length; i++) {
+            console.log('object in data: ', data[i]); // this gets the individual object (one person's data)
+            console.log('object[i].faceRectangle: ', data[i].faceRectangle); //get the dimentions of the faceRectangle
+            
+        };
+    };
+
 
     //EVENT LISTENER FOR THE GET EMOTIONS BUTTON
-    $('#submitButton').on('click', buttonClick)
+    $('#urlSubmit').on('click', urlSubmitClick);
 
-    function buttonClick() {
+    function urlSubmitClick() {
         // console.log(body, 'first body'); //shows the what was in the url value when we start
         //grab the value from the input area
         var inputVal = $('input').val();
@@ -36,8 +47,10 @@ $(document).ready(function() {
                 return;
             }
             console.log(data); //log the data into the console
-            //parse the body back into an object
+            //parse the body back into an object for the next input
             body = JSON.parse(body);
+
+            displayBoxes(data);
         });
     };
 
