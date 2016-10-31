@@ -1,40 +1,58 @@
 'use strict';
 $(document).ready(function() {
 
+  //GLOBAL VARIABLES
     //where the input url will go, stored globally
     var body = {
-        url: ''
+      url: ''
     };
-
     //get myCanvas id
     var myCanvas = $('#myCanvas');
+    //create the image tag
+    var addImg = $("<img>");
+    //add the image tag into the emotion-img div
+    $('#emotion-img').append(addImg);
+
+    ////////////////////////////////////////////////////////
 
     //to iterate over the boxes data
     function displayBoxes(data) {
+      var image = $('img');
+      var imageWidth = image.attr('width');
+      var imageHeight = image.attr('height');
+      console.log('image width x height: ', imageWidth,", ", imageHeight);
         // console.log('displayBoxes: ', data); //shows we grab the data
-        //for each person in the data
+        // $('myCanvas').scaleCanvas({
+        //     x: 100,
+        //     y: 100,
+        //     scaleX: 1.5,
+        //     scaleY: 3
+        // })
+
+        //clear canvas so that the old boxes go away
+        myCanvas.clearCanvas();
+        //for each object in the array, each person
         for (var i = 0; i < data.length; i++) {
             // console.log('object in data: ', data[i]); // this gets the individual object (one person's data)
             //Get faceRectangle
             var faceRectangleDim = data[i].faceRectangle;
-            console.log('creating rectangle ', data[i].faceRectangle);
+            // console.log('creating rectangle ', data[i].faceRectangle);
             // console.log('object[i].faceRectangle: ', faceRectangleDim); //get the dimentions of the faceRectangle
-            //TRYING TO MAKE A CANVAS
+            //TRYING TO MAKE BOXES ON jCANVAS
             myCanvas.drawRect({
-              // fillStyle: 'none',
-              strokeStyle: 'blue',
-              strokeWidth: 1,
-              x: faceRectangleDim.left, y: faceRectangleDim.top,
-              fromCenter: false,
-              width: faceRectangleDim.width,
-              height: faceRectangleDim.height
+                // fillStyle: 'none',
+                strokeStyle: 'blue',
+                strokeWidth: 1,
+                x: faceRectangleDim.left,
+                y: faceRectangleDim.top,
+                fromCenter: false,
+                width: faceRectangleDim.width,
+                height: faceRectangleDim.height
             })
         };
     };
 
 
-    //EVENT LISTENER FOR THE GET EMOTIONS BUTTON
-    $('#urlSubmit').on('click', urlSubmitClick);
 
     function urlSubmitClick() {
         // console.log(body, 'first body'); //shows the what was in the url value when we start
@@ -46,12 +64,8 @@ $(document).ready(function() {
         // console.log(body); //this shows that the url has changed
         //change the body object into something JSON can read
         body = JSON.stringify(body);
-        //create the image tag
-        var addImg = $("<img>");
         //add the src to the img tag, the src being the input value
         $(addImg).attr("src", inputVal);
-        //add the image tag into the emotion-img div
-        $('#emotion-img').append(addImg);
         // console.log($('#emotion-img')); //make sure the img tag got into the div
         //XMLHttp Request
         var $xhr = $.post('https://g-mscog.herokuapp.com/emotion/v1.0/recognize?',
@@ -69,5 +83,7 @@ $(document).ready(function() {
         });
     };
 
+    //EVENT LISTENER FOR THE GET EMOTIONS BUTTON
+    $('#urlSubmit').on('click', urlSubmitClick);
 
 });

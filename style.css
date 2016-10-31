@@ -16,3 +16,7 @@ img{
   display: block;
   position: absolute;
 }
+
+.row{
+  margin-top: 20px;
+}
