@@ -17,17 +17,6 @@ $(document).ready(function() {
 
     //to iterate over the boxes data
     function displayBoxes(data) {
-      var image = $('img');
-      var imageWidth = image.attr('width');
-      var imageHeight = image.attr('height');
-      console.log('image width x height: ', imageWidth,", ", imageHeight);
-        // console.log('displayBoxes: ', data); //shows we grab the data
-        // $('myCanvas').scaleCanvas({
-        //     x: 100,
-        //     y: 100,
-        //     scaleX: 1.5,
-        //     scaleY: 3
-        // })
 
         //for each object in the array, each person
         for (var i = 0; i < data.length; i++) {
@@ -64,9 +53,20 @@ $(document).ready(function() {
         body = JSON.stringify(body);
         //clear canvas so that the old boxes go away
         myCanvas.clearCanvas();
+
+        var image = new Image();
+        image.src = inputVal;
+        image.onload = function() {
+          console.log(this.height, this.width)
+          console.log($('canvas'));
+          myCanvas.attr('height', this.height);
+          myCanvas.attr('width', this.width);
+        };
+
         //add the src to the img tag, the src being the input value
         $(addImg).attr("src", inputVal);
         // console.log($('#emotion-img')); //make sure the img tag got into the div
+
         //XMLHttp Request
         var $xhr = $.post('https://g-mscog.herokuapp.com/emotion/v1.0/recognize?',
             body);
@@ -75,7 +75,7 @@ $(document).ready(function() {
             if ($xhr.status !== 200) {
                 return;
             }
-            // console.log(data); //log the data into the console
+            console.log(data); //log the data into the console
             //parse the body back into an object for the next input
             body = JSON.parse(body);
 
