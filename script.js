@@ -6,14 +6,29 @@ $(document).ready(function() {
         url: ''
     };
 
+    //get myCanvas id
+    var myCanvas = $('#myCanvas');
+
     //to iterate over the boxes data
     function displayBoxes(data) {
-        console.log('displayBoxes: ', data); //shows we grab the data
+        // console.log('displayBoxes: ', data); //shows we grab the data
         //for each person in the data
         for (var i = 0; i < data.length; i++) {
-            console.log('object in data: ', data[i]); // this gets the individual object (one person's data)
-            console.log('object[i].faceRectangle: ', data[i].faceRectangle); //get the dimentions of the faceRectangle
-            
+            // console.log('object in data: ', data[i]); // this gets the individual object (one person's data)
+            //Get faceRectangle
+            var faceRectangleDim = data[i].faceRectangle;
+            console.log('creating rectangle ', data[i].faceRectangle);
+            // console.log('object[i].faceRectangle: ', faceRectangleDim); //get the dimentions of the faceRectangle
+            //TRYING TO MAKE A CANVAS
+            myCanvas.drawRect({
+              // fillStyle: 'none',
+              strokeStyle: 'blue',
+              strokeWidth: 1,
+              x: faceRectangleDim.left, y: faceRectangleDim.top,
+              fromCenter: false,
+              width: faceRectangleDim.width,
+              height: faceRectangleDim.height
+            })
         };
     };
 
@@ -46,7 +61,7 @@ $(document).ready(function() {
             if ($xhr.status !== 200) {
                 return;
             }
-            console.log(data); //log the data into the console
+            // console.log(data); //log the data into the console
             //parse the body back into an object for the next input
             body = JSON.parse(body);
 
