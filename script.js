@@ -1,10 +1,10 @@
 'use strict';
 $(document).ready(function() {
 
-  //GLOBAL VARIABLES
+    //GLOBAL VARIABLES
     //where the input url will go, stored globally
     var body = {
-      url: ''
+        url: ''
     };
     //get myCanvas id
     var myCanvas = $('#myCanvas');
@@ -25,17 +25,24 @@ $(document).ready(function() {
             var faceRectangleDim = data[i].faceRectangle;
             // console.log('creating rectangle ', data[i].faceRectangle);
             // console.log('object[i].faceRectangle: ', faceRectangleDim); //get the dimentions of the faceRectangle
-            //TRYING TO MAKE BOXES ON jCANVAS
+
+
+
+            // TRYING TO MAKE BOXES ON jCANVAS
             myCanvas.drawRect({
+                layer: true,
                 // fillStyle: 'none',
-                strokeStyle: 'blue',
+                strokeStyle: 'green',
                 strokeWidth: 1,
                 x: faceRectangleDim.left,
                 y: faceRectangleDim.top,
                 fromCenter: false,
                 width: faceRectangleDim.width,
-                height: faceRectangleDim.height
-            })
+                height: faceRectangleDim.height,
+                click: function(layer) {
+                    console.log('over', layer)
+                }
+            });
         };
     };
 
@@ -57,10 +64,10 @@ $(document).ready(function() {
         var image = new Image();
         image.src = inputVal;
         image.onload = function() {
-          console.log(this.height, this.width)
-          console.log($('canvas'));
-          myCanvas.attr('height', this.height);
-          myCanvas.attr('width', this.width);
+            console.log(this.height, this.width)
+            console.log($('canvas'));
+            myCanvas.attr('height', this.height);
+            myCanvas.attr('width', this.width);
         };
 
         //add the src to the img tag, the src being the input value
@@ -75,7 +82,7 @@ $(document).ready(function() {
             if ($xhr.status !== 200) {
                 return;
             }
-            console.log(data); //log the data into the console
+            // console.log(data); //log the data into the console
             //parse the body back into an object for the next input
             body = JSON.parse(body);
 
