@@ -49,9 +49,13 @@ $(document).ready(function() {
                 cornerRadius: 1,
                 intangible: false,
                 click: function(layer) {
-                  // var arrNum = layer.name.slice(-1);
-                    console.log('layerName: ',layer.name, " and happiness ", data[layer.name].scores.happiness*100 )//layer.name
-                      
+
+                  // console.log('layerName: ',layer.name, " and happiness ", data[layer.name].scores.happiness*100 )
+                  // console.log('layerName: ',layer.name, " and scores: ", JSON.stringify(data[layer.name].scores) )
+                  var makediv = $('<div>');
+                  var individualScores = JSON.stringify(data[layer.name].scores);
+                  makediv.text(individualScores);
+                  makediv.appendTo('#emotion-results')
                 }
             });
         };
