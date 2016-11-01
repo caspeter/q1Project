@@ -29,7 +29,9 @@ $(document).ready(function() {
             // console.log('object in data: ', data[i]); // this gets the individual object (one person's data)
             //Get faceRectangle
             var faceRectangleDim = data[i].faceRectangle;
+            // console.log(faceRectangleDim);
             var faceHappiness = data[i].scores.happiness;
+            // console.log(faceHappiness);
             // console.log('creating rectangle ', data[i].faceRectangle);
             // console.log('object[i].faceRectangle: ', faceRectangleDim); //get the dimentions of the faceRectangle
 
@@ -37,15 +39,19 @@ $(document).ready(function() {
             myCanvas.drawRect({
                 layer: true,
                 strokeStyle: 'green',
-                name: 'layer' + i,
+                name: ''+i,
                 strokeWidth: 1,
                 x: faceRectangleDim.left,
                 y: faceRectangleDim.top,
                 fromCenter: false,
                 width: faceRectangleDim.width,
                 height: faceRectangleDim.height,
+                cornerRadius: 1,
+                intangible: false,
                 click: function(layer) {
-                    console.log('faceScore: ', faceHappiness)
+                  // var arrNum = layer.name.slice(-1);
+                    console.log('layerName: ',layer.name, " and happiness ", data[layer.name].scores.happiness*100 )//layer.name
+                      
                 }
             });
         };
