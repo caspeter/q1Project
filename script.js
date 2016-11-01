@@ -19,13 +19,13 @@ $(document).ready(function() {
 
     //to iterate over the boxes data
     function displayBoxes(data) {
-      // var canvases = [];
-      // for (var canavs in canvases) {
-      //   myCanvas.clearCanvas();
-      // }
+        // var canvases = [];
+        // for (var canavs in canvases) {
+        //   myCanvas.clearCanvas();
+        // }
         //for each object in the array, each person
         for (var i = 0; i < data.length; i++) {
-          canvases.push([i]);
+            canvases.push([i]);
             // console.log('object in data: ', data[i]); // this gets the individual object (one person's data)
             //Get faceRectangle
             var faceRectangleDim = data[i].faceRectangle;
@@ -39,7 +39,7 @@ $(document).ready(function() {
             myCanvas.drawRect({
                 layer: true,
                 strokeStyle: 'green',
-                name: ''+i,
+                name: '' + i,
                 strokeWidth: 1,
                 x: faceRectangleDim.left,
                 y: faceRectangleDim.top,
@@ -49,30 +49,35 @@ $(document).ready(function() {
                 cornerRadius: 1,
                 intangible: false,
                 click: function(layer) {
+                    $('#happiness')
+                    console.log('layerName: ',layer.name, " and happiness ", Math.round(data[layer.name].scores.happiness*100) )
+                    // console.log('layerName: ',layer.name, " and scores: ", JSON.stringify(data[layer.name].scores) )
 
-                  // console.log('layerName: ',layer.name, " and happiness ", data[layer.name].scores.happiness*100 )
-                  // console.log('layerName: ',layer.name, " and scores: ", JSON.stringify(data[layer.name].scores) )
-                  var makediv = $('<div>');
-                  var individualScores = JSON.stringify(data[layer.name].scores);
-                  makediv.text(individualScores);
-                  makediv.appendTo('#emotion-results')
+                    // (function() {
+                        $('#happiness').progressbar({
+                            value: Math.round(data[layer.name].scores.happiness*100)
+                        });
+                    // })();
+
+                    // var individualScores = JSON.stringify(data[layer.name].scores.happiness);
+                    // happyDiv.text(individualScores);
                 }
             });
         };
     };
 
-    function clearCanvases(canvases){
-      for (var i = 0; i < canvases.length; i++) {
-        myCanvas.removeLayer('layer' + i).drawLayers();
-      }
-      // for (var canvas in canvases) {
-      //   myCanvas.removeLayer();
-      // }
+    function clearCanvases(canvases) {
+        for (var i = 0; i < canvases.length; i++) {
+            myCanvas.removeLayer('layer' + i).drawLayers();
+        }
+        // for (var canvas in canvases) {
+        //   myCanvas.removeLayer();
+        // }
     }
 
 
     function urlSubmitClick() {
-      clearCanvases(canvases);
+        clearCanvases(canvases);
         // console.log(body, 'first body'); //shows the what was in the url value when we start
         //grab the value from the input area
         var inputVal = $('input').val();
@@ -115,11 +120,11 @@ $(document).ready(function() {
 
             displayBoxes(data);
         });
-        $xhr.fail(function (data) {
-          if($xhr.status === 400){
-            Materialize.toast('Please enter a valid URL', 4000);
-            return
-          }
+        $xhr.fail(function(data) {
+            if ($xhr.status === 400) {
+                Materialize.toast('Please enter a valid URL', 4000);
+                return
+            }
         })
     };
 
