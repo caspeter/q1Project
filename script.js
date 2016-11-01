@@ -1,6 +1,5 @@
 'use strict';
 $(document).ready(function() {
-  console.log('Document Ready Start');
 
     //GLOBAL VARIABLES
     //where the input url will go, stored globally
@@ -30,7 +29,7 @@ $(document).ready(function() {
             // console.log('object in data: ', data[i]); // this gets the individual object (one person's data)
             //Get faceRectangle
             var faceRectangleDim = data[i].faceRectangle;
-            var faceScores = data.scores;
+            var faceHappiness = data[i].scores.happiness;
             // console.log('creating rectangle ', data[i].faceRectangle);
             // console.log('object[i].faceRectangle: ', faceRectangleDim); //get the dimentions of the faceRectangle
 
@@ -45,13 +44,11 @@ $(document).ready(function() {
                 fromCenter: false,
                 width: faceRectangleDim.width,
                 height: faceRectangleDim.height,
-                // click: function(layer) {
-                //     console.log('faceScore: ', layer[i].faceScores.happiness)
-                // }
+                click: function(layer) {
+                    console.log('faceScore: ', faceHappiness)
+                }
             });
-            console.log('Function drawRect - for loop');
         };
-        console.log('Function drawRect - exiting');
     };
 
     function clearCanvases(canvases){
@@ -61,12 +58,10 @@ $(document).ready(function() {
       // for (var canvas in canvases) {
       //   myCanvas.removeLayer();
       // }
-      console.log('Function Clear Canvas');
     }
 
 
     function urlSubmitClick() {
-      console.log('Function urlSubmitClick enter');
       clearCanvases(canvases);
         // console.log(body, 'first body'); //shows the what was in the url value when we start
         //grab the value from the input area
@@ -89,8 +84,7 @@ $(document).ready(function() {
             myCanvas.attr('width', this.width);
         };
 
-        //add the src to the img tag, the src being the input value
-        $(addImg).attr("src", inputVal);
+
         // console.log($('#emotion-img')); //make sure the img tag got into the div
         //clear the input value so it can accept a new one
         $('input').val('');
@@ -103,14 +97,20 @@ $(document).ready(function() {
             if ($xhr.status !== 200) {
                 return;
             }
-            // console.log(data); //log the data into the console
+            //add the src to the img tag, the src being the input value
+            $(addImg).attr("src", inputVal);
+            console.log(data); //log the data into the console
             //parse the body back into an object for the next input
             body = JSON.parse(body);
 
             displayBoxes(data);
         });
-        console.log('Function urlSubmitClick exit');
-
+        $xhr.fail(function (data) {
+          if($xhr.status === 400){
+            Materialize.toast('Please enter a valid URL', 4000);
+            return
+          }
+        })
     };
 
     //EVENT LISTENER FOR THE GET EMOTIONS BUTTON
