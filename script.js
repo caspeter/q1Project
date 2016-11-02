@@ -1,7 +1,4 @@
 'use strict';
-
-var createBars = false;
-
 $(document).ready(function() {
 
     //GLOBAL VARIABLES
@@ -9,29 +6,31 @@ $(document).ready(function() {
     var body = {
         url: ''
     };
-
+    //get myCanvas id
+    var myCanvas = $('#myCanvas');
     //create the image tag
     var addImg = $("<img>");
     //add the image tag into the emotion-img div
     $('#emotion-img').append(addImg);
-    //create the canvas element to be added in
-    var createCanvas = $('<canvas id="myCanvas" width="1" height="1"></canvas>')
+
+    var canvases = [];
 
     ////////////////////////////////////////////////////////
 
     //to iterate over the boxes data
     function displayBoxes(data) {
-
-        var myCanvas = $('#myCanvas');
         // var canvases = [];
+        // for (var canavs in canvases) {
+        //   myCanvas.clearCanvas();
+        // }
         //for each object in the array, each person
         for (var i = 0; i < data.length; i++) {
-            // canvases.push([i]);
+            canvases.push([i]);
             // console.log('object in data: ', data[i]); // this gets the individual object (one person's data)
             //Get faceRectangle
             var faceRectangleDim = data[i].faceRectangle;
             // console.log(faceRectangleDim);
-            // var faceHappiness = data[i].scores.happiness;
+            var faceHappiness = data[i].scores.happiness;
             // console.log(faceHappiness);
             // console.log('creating rectangle ', data[i].faceRectangle);
             // console.log('object[i].faceRectangle: ', faceRectangleDim); //get the dimentions of the faceRectangle
@@ -50,17 +49,14 @@ $(document).ready(function() {
                 cornerRadius: 1,
                 intangible: false,
                 click: function(layer) {
-                  createBars = true;
                     // console.log('layerName: ', layer.name, " and happiness ", Math.round(data[layer.name].scores.happiness * 100))
                     // console.log('layerName: ', layer.name, " and scores: ", JSON.stringify(data[layer.name].scores))
                     $('h5').css('visibility', 'visible');
-                    // $('.progressBar').css('display', 'block');
 
                     //HAPPINESS BAR
                     $('#happiness').progressbar({
                         value: Math.round(data[layer.name].scores.happiness * 100),
                     });
-                    // $('#happiness .progressbarValue').css({"background": '#FF0000'});
                     //SADNESS BAR
                     $('#sadness').progressbar({
                         value: Math.round(data[layer.name].scores.sadness * 100)
@@ -94,43 +90,19 @@ $(document).ready(function() {
         };
     };
 
-    // function clearCanvases(canvases) {
-    //     for (var i = 0; i < canvases.length; i++) {
-    //         myCanvas.removeLayer('layer' + i).drawLayers();
-    //     }
-    //     // for (var canvas in canvases) {
-    //     //   myCanvas.removeLayer();
-    //     // }
-    // }
+    function clearCanvases(canvases) {
+        for (var i = 0; i < canvases.length; i++) {
+            myCanvas.removeLayer('layer' + i).drawLayers();
+        }
+        // for (var canvas in canvases) {
+        //   myCanvas.removeLayer();
+        // }
+    }
+
 
     function urlSubmitClick() {
-      if (createBars === true) {
-        //HAPPINESS BAR
-        $('#happiness').progressbar('destroy');
-        //SADNESS BAR
-        $('#sadness').progressbar('destroy');
-        //SURPRISE BAR
-        $('#surprise').progressbar('destroy');
-        //NEUTRAL BAR
-        $('#neutral').progressbar('destroy');
-        //FEAR BAR
-        $('#fear').progressbar('destroy');
-        //DISGUST BAR
-        $('#disgust').progressbar('destroy');
-        //ANGER BAR
-        $('#anger').progressbar('destroy');
-        //CONTEMPT BAR
-        $('#contempt').progressbar('destroy');
-        createBars = false;
-      }
-
-        if ($('#myCanvas')) {
-            $('#myCanvas').remove()
-        };
-
-        createCanvas.prependTo('#emotion-img');
+        clearCanvases(canvases);
         $('h5').css('visibility', 'hidden');
-        // $('.progressBar').css('display', 'none');
         // console.log(body, 'first body'); //shows the what was in the url value when we start
         //grab the value from the input area
         var inputVal = $('input').val();
@@ -140,16 +112,20 @@ $(document).ready(function() {
         // console.log(body); //this shows that the url has changed
         //change the body object into something JSON can read
         body = JSON.stringify(body);
-        var myCanvas = $('#myCanvas');
+        //clear canvas so that the old boxes go away
+        // myCanvas.clearCanvas();
+
         var image = new Image();
         image.src = inputVal;
         image.onload = function() {
-            console.log(this.height, this.width)
-            console.log($('canvas'));
+            // console.log(this.height, this.width)
+            //console.log($('canvas'));
             myCanvas.attr('height', this.height);
             myCanvas.attr('width', this.width);
         };
 
+
+        // console.log($('#emotion-img')); //make sure the img tag got into the div
         //clear the input value so it can accept a new one
         $('input').val('');
 
@@ -167,11 +143,10 @@ $(document).ready(function() {
             //parse the body back into an object for the next input
             body = JSON.parse(body);
 
-
             displayBoxes(data);
         });
         $xhr.fail(function(data) {
-            if ($xhr.status == 400) {
+            if ($xhr.status === 400) {
                 Materialize.toast('Please enter a valid URL', 4000);
                 return
             }
