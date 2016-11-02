@@ -49,9 +49,9 @@ $(document).ready(function() {
                 cornerRadius: 1,
                 intangible: false,
                 click: function(layer) {
-                    var index = layer.name.replace('layer','');
+                    var index = layer.name.replace('layer', '');
                     console.log('layerName: ', layer.name, " and happiness ", Math.round(data[index].scores.happiness * 100))
-                    // console.log('layerName: ', layer.name, " and scores: ", JSON.stringify(data[layer.name].scores))
+                        // console.log('layerName: ', layer.name, " and scores: ", JSON.stringify(data[layer.name].scores))
                     $('h5').css('visibility', 'visible');
 
                     //HAPPINESS BAR
@@ -138,6 +138,8 @@ $(document).ready(function() {
         //once the post is finished, do this with the data
         $xhr.done(function(data) {
             if ($xhr.status !== 200) {
+              //make sure the body is parsed for next entery
+                body = JSON.parse(body);
                 return;
             }
             //add the src to the img tag, the src being the input value
@@ -150,7 +152,9 @@ $(document).ready(function() {
         });
         $xhr.fail(function(data) {
             if ($xhr.status === 400) {
-                Materialize.toast('Please enter a valid URL', 4000);
+              //make sure the body is parsed for next entery
+                body = JSON.parse(body);
+                Materialize.toast('Please enter a valid URL', 4000, 'red');
                 return
             }
         })
