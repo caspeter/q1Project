@@ -154,7 +154,7 @@ $(document).ready(function() {
             if ($xhr.status === 400) {
               //make sure the body is parsed for next entery
                 body = JSON.parse(body);
-                Materialize.toast('Please enter a valid URL', 4000, 'red');
+                Materialize.toast('Please enter a valid URL', 4000, 'orange accent-4');
                 return
             }
         })
