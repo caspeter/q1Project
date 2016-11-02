@@ -38,7 +38,7 @@ $(document).ready(function() {
             // MAKE BOXES ON jCANVAS
             myCanvas.drawRect({
                 layer: true,
-                strokeStyle: 'green',
+                strokeStyle: '#1565c0',
                 name: 'layer' + i,
                 strokeWidth: 1,
                 x: faceRectangleDim.left,
