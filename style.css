@@ -1,45 +1,59 @@
 #emotion-img {
-  width: 80%;
-  /*z-index: 100;*/
-  margin-left: auto;
-  margin-right: auto;
+    width: 80%;
+    /*z-index: 100;*/
+    margin-left: auto;
+    margin-right: auto;
 }
 
-img{
-  width: auto;
-  margin-left: auto;
-  margin-right: auto;
+img {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-#myCanvas{
-  z-index: 1;
-  position: absolute;
+#myCanvas {
+    z-index: 1;
+    position: absolute;
 }
 
-.row{
-  margin-top: 20px;
+.row {
+    margin-top: 20px;
 }
 
-#emotion-results{
+#emotion-results {}
 
+h5 {
+    visibility: hidden;
 }
 
-h5{
-  visibility: hidden;
+#logo {
+    width: 250px;
+    padding-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
-#logo{
-  width: 250px;
-  padding-top: 15px;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
 
 /*FIX FOOTER STYLE*/
-.footer-text{
-  margin: 0;
-  margin-left: 10px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+
+footer{
+  margin-top: 15px;
+}
+
+.footer-text {
+    margin: 0;
+    margin-left: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #311b92;
+    box-shadow: 0 1px 0 0 #311b92;
+}
+
+.input-field input[type=text].valid {
+    border-bottom: 1px solid #311b92;
+    box-shadow: 0 1px 0 0 #311b92;
 }
