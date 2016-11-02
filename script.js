@@ -1,6 +1,6 @@
 'use strict';
 $(document).ready(function() {
-
+    $('#emotion-results').toggle();
     //GLOBAL VARIABLES
     //where the input url will go, stored globally
     var body = {
@@ -52,7 +52,7 @@ $(document).ready(function() {
                     var index = layer.name.replace('layer', '');
                     // console.log('layerName: ', layer.name, " and happiness ", Math.round(data[index].scores.happiness * 100))
                         // console.log('layerName: ', layer.name, " and scores: ", JSON.stringify(data[layer.name].scores))
-                    $('h5').css('visibility', 'visible');
+                    $('#emotion-results').show();
 
                     //HAPPINESS BAR
                     $('#happiness').progressbar({
@@ -113,7 +113,7 @@ $(document).ready(function() {
 
     function urlSubmitClick() {
         clearCanvases();
-        $('h5').css('visibility', 'hidden');
+        $('#emotion-results').hide();
         // console.log(body, 'first body'); //shows the what was in the url value when we start
         //grab the value from the input area
         var inputVal = $('input').val();
