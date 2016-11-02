@@ -39,7 +39,7 @@ $(document).ready(function() {
             myCanvas.drawRect({
                 layer: true,
                 strokeStyle: 'green',
-                name: '' + i,
+                name: 'layer' + i,
                 strokeWidth: 1,
                 x: faceRectangleDim.left,
                 y: faceRectangleDim.top,
@@ -49,51 +49,54 @@ $(document).ready(function() {
                 cornerRadius: 1,
                 intangible: false,
                 click: function(layer) {
-                    // console.log('layerName: ', layer.name, " and happiness ", Math.round(data[layer.name].scores.happiness * 100))
+                    var index = layer.name.replace('layer','');
+                    console.log('layerName: ', layer.name, " and happiness ", Math.round(data[index].scores.happiness * 100))
                     // console.log('layerName: ', layer.name, " and scores: ", JSON.stringify(data[layer.name].scores))
                     $('h5').css('visibility', 'visible');
 
                     //HAPPINESS BAR
                     $('#happiness').progressbar({
-                        value: Math.round(data[layer.name].scores.happiness * 100),
+                        value: Math.round(data[index].scores.happiness * 100),
                     });
                     //SADNESS BAR
                     $('#sadness').progressbar({
-                        value: Math.round(data[layer.name].scores.sadness * 100)
+                        value: Math.round(data[index].scores.sadness * 100)
                     });
                     //SURPRISE BAR
                     $('#surprise').progressbar({
-                        value: Math.round(data[layer.name].scores.surprise * 100)
+                        value: Math.round(data[index].scores.surprise * 100)
                     });
                     //NEUTRAL BAR
                     $('#neutral').progressbar({
-                        value: Math.round(data[layer.name].scores.neutral * 100)
+                        value: Math.round(data[index].scores.neutral * 100)
                     });
                     //FEAR BAR
                     $('#fear').progressbar({
-                        value: Math.round(data[layer.name].scores.fear * 100)
+                        value: Math.round(data[index].scores.fear * 100)
                     });
                     //DISGUST BAR
                     $('#disgust').progressbar({
-                        value: Math.round(data[layer.name].scores.disgust * 100)
+                        value: Math.round(data[index].scores.disgust * 100)
                     });
                     //ANGER BAR
                     $('#anger').progressbar({
-                        value: Math.round(data[layer.name].scores.anger * 100)
+                        value: Math.round(data[index].scores.anger * 100)
                     });
                     //CONTEMPT BAR
                     $('#contempt').progressbar({
-                        value: Math.round(data[layer.name].scores.contempt * 100)
+                        value: Math.round(data[index].scores.contempt * 100)
                     });
                 }
             });
         };
     };
 
-    function clearCanvases(canvases) {
+    function clearCanvases() {
+        console.log(canvases);
         for (var i = 0; i < canvases.length; i++) {
             myCanvas.removeLayer('layer' + i).drawLayers();
         }
+        canvases = [];
         // for (var canvas in canvases) {
         //   myCanvas.removeLayer();
         // }
@@ -101,7 +104,7 @@ $(document).ready(function() {
 
 
     function urlSubmitClick() {
-        clearCanvases(canvases);
+        clearCanvases();
         $('h5').css('visibility', 'hidden');
         // console.log(body, 'first body'); //shows the what was in the url value when we start
         //grab the value from the input area
