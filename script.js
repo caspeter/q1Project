@@ -1,5 +1,6 @@
 'use strict';
 $(document).ready(function() {
+    //switchs visibility for the emotions 
     $('#emotion-results').toggle();
     //GLOBAL VARIABLES
     //where the input url will go, stored globally
@@ -12,28 +13,18 @@ $(document).ready(function() {
     var addImg = $("<img>");
     //add the image tag into the emotion-img div
     $('#emotion-img').append(addImg);
-
+    //blank canvases array for removing them on a new click
     var canvases = [];
 
     ////////////////////////////////////////////////////////
 
     //to iterate over the boxes data
     function displayBoxes(data) {
-        // var canvases = [];
-        // for (var canavs in canvases) {
-        //   myCanvas.clearCanvas();
-        // }
         //for each object in the array, each person
         for (var i = 0; i < data.length; i++) {
             canvases.push([i]);
-            // console.log('object in data: ', data[i]); // this gets the individual object (one person's data)
             //Get faceRectangle
             var faceRectangleDim = data[i].faceRectangle;
-            // console.log(faceRectangleDim);
-            var faceHappiness = data[i].scores.happiness;
-            // console.log(faceHappiness);
-            // console.log('creating rectangle ', data[i].faceRectangle);
-            // console.log('object[i].faceRectangle: ', faceRectangleDim); //get the dimentions of the faceRectangle
 
             // MAKE BOXES ON jCANVAS
             myCanvas.drawRect({
@@ -51,80 +42,89 @@ $(document).ready(function() {
                 mouseover: function(layer) {
                     var index = layer.name.replace('layer', '');
                     // console.log('layerName: ', layer.name, " and happiness ", Math.round(data[index].scores.happiness * 100))
-                        // console.log('layerName: ', layer.name, " and scores: ", JSON.stringify(data[layer.name].scores))
                     $('#emotion-results').show();
 
-                    //HAPPINESS BAR
+                    //HAPPINESS BAR and COLOR
                     $('#happiness').progressbar({
                         value: Math.round(data[index].scores.happiness * 100),
                     });
-                    $('#happiness > div').css({'background': '#ff6562'});
-                    //SADNESS BAR
+                    $('#happiness > div').css({
+                        'background': '#ff6562'
+                    });
+                    //SADNESS BAR and COLOR
                     $('#sadness').progressbar({
                         value: Math.round(data[index].scores.sadness * 100)
                     });
-                    $('#sadness > div').css({'background': '#6c9cf8'});
-                    //SURPRISE BAR
+                    $('#sadness > div').css({
+                        'background': '#6c9cf8'
+                    });
+                    //SURPRISE BAR and COLOR
                     $('#surprise').progressbar({
                         value: Math.round(data[index].scores.surprise * 100)
                     });
-                    $('#surprise > div').css({'background': '#ffcd10'});
-                    //NEUTRAL BAR
+                    $('#surprise > div').css({
+                        'background': '#ffcd10'
+                    });
+                    //NEUTRAL BAR and COLOR
                     $('#neutral').progressbar({
                         value: Math.round(data[index].scores.neutral * 100)
                     });
-                    $('#neutral > div').css({'background': '#grey'});
-                    //FEAR BAR
+                    $('#neutral > div').css({
+                        'background': '#grey'
+                    });
+                    //FEAR BAR and COLOR
                     $('#fear').progressbar({
                         value: Math.round(data[index].scores.fear * 100)
                     });
-                    $('#fear > div').css({'background': 'black'});
-                    //DISGUST BAR
+                    $('#fear > div').css({
+                        'background': 'black'
+                    });
+                    //DISGUST BAR and COLOR
                     $('#disgust').progressbar({
                         value: Math.round(data[index].scores.disgust * 100)
                     });
-                    $('#disgust > div').css({'background': '#50b94f'});
-                    //ANGER BAR
+                    $('#disgust > div').css({
+                        'background': '#50b94f'
+                    });
+                    //ANGER BAR and COLOR
                     $('#anger').progressbar({
                         value: Math.round(data[index].scores.anger * 100)
                     });
-                    $('#anger > div').css({'background': '#b53200'});
-                    //CONTEMPT BAR
+                    $('#anger > div').css({
+                        'background': '#b53200'
+                    });
+                    //CONTEMPT BAR and COLOR
                     $('#contempt').progressbar({
                         value: Math.round(data[index].scores.contempt * 100)
                     });
-                    $('#contempt > div').css({'background': '#ff6d00'});
+                    $('#contempt > div').css({
+                        'background': '#ff6d00'
+                    });
                 }
             });
         };
     };
 
     function clearCanvases() {
-        console.log(canvases);
+        //for the length of the canvases array remove a layer
         for (var i = 0; i < canvases.length; i++) {
             myCanvas.removeLayer('layer' + i).drawLayers();
         }
+        //clear the canvases array
         canvases = [];
-        // for (var canvas in canvases) {
-        //   myCanvas.removeLayer();
-        // }
     }
 
-
     function urlSubmitClick() {
+        //clear canvas so that the old boxes go away using the clearCanvases function
         clearCanvases();
+        //hide the emotion-results code
         $('#emotion-results').hide();
-        // console.log(body, 'first body'); //shows the what was in the url value when we start
         //grab the value from the input area
         var inputVal = $('input').val();
-        // console.log('inputVal: ' + inputVal); //shows what was inputed
         //set the object body key url to the input value
         body.url = inputVal;
-        // console.log(body); //this shows that the url has changed
         //change the body object into something JSON can read
         body = JSON.stringify(body);
-        //clear canvas so that the old boxes go away
-        // myCanvas.clearCanvas();
 
         var image = new Image();
         image.src = inputVal;
@@ -134,10 +134,7 @@ $(document).ready(function() {
             myCanvas.attr('height', this.height);
             myCanvas.attr('width', this.width);
         };
-
-
-        // console.log($('#emotion-img')); //make sure the img tag got into the div
-        //clear the input value so it can accept a new one
+        //clear the input value so it can accept a new value
         $('input').val('');
 
         //XMLHttp Request
@@ -146,7 +143,7 @@ $(document).ready(function() {
         //once the post is finished, do this with the data
         $xhr.done(function(data) {
             if ($xhr.status !== 200) {
-              //make sure the body is parsed for next entery
+                //make sure the body is parsed for next entery
                 body = JSON.parse(body);
                 return;
             }
@@ -155,12 +152,12 @@ $(document).ready(function() {
             // console.log(data); //log the data into the console
             //parse the body back into an object for the next input
             body = JSON.parse(body);
-
+            //run the function displayBoxes on the data
             displayBoxes(data);
         });
         $xhr.fail(function(data) {
             if ($xhr.status === 400) {
-              //make sure the body is parsed for next entery
+                //make sure the body is parsed for next entery
                 body = JSON.parse(body);
                 Materialize.toast('Please enter a valid URL', 4000, 'orange accent-4');
                 return

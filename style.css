@@ -1,9 +1,13 @@
+
+/*DIV WHERE THE INPUT IMAGE GOES*/
+
 #emotion-img {
     width: 80%;
-    /*z-index: 100;*/
     margin-left: auto;
     margin-right: auto;
 }
+
+/*IMAGE INPUT DISPLAY*/
 
 img {
     width: auto;
@@ -11,8 +15,9 @@ img {
     margin-right: auto;
 }
 
+/*PLACE CANVAS OVER IMAGE*/
+
 #myCanvas {
-    z-index: 1;
     position: absolute;
 }
 
@@ -20,9 +25,7 @@ img {
     margin-top: 20px;
 }
 
-/*#emotion-results{
-  visibility: hidden;
-}*/
+/*LOGO STYLE*/
 
 #logo {
     width: 250px;
@@ -32,23 +35,26 @@ img {
     display: block;
 }
 
-
 /*FIX FOOTER STYLE*/
 
 footer{
   margin-top: 15px;
 }
 
+.footer-text {
+  margin: 0;
+  margin-left: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+/*PROGRESS BAR FIX*/
+
 .ui-progressbar .ui-progressbar-value {
   margin: 0 !important;
 }
 
-.footer-text {
-    margin: 0;
-    margin-left: 10px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
+/*INPUT LINE COLOR - DOES NOT WORK*/
 
 .input-field input[type=text]:focus {
     border-bottom: 1px solid #311b92;
