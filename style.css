@@ -106,6 +106,6 @@ div.callout {
 	border-right: 10px solid #444;
 }
 
-/*.callout.row{
-  padding: 0 !important;
-}*/
+.row{
+  margin: 1px !important;
+}
