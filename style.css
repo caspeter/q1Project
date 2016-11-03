@@ -95,6 +95,17 @@ div.callout {
 	/*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;*/
 }
 
+.callout::before {
+	content: "";
+	width: 0px;
+	height: 0px;
+	border: 0.8em solid transparent;
+	position: absolute;
+  left: -20px;
+	top: 5%;
+	border-right: 10px solid #444;
+}
+
 /*.callout.row{
   padding: 0 !important;
 }*/

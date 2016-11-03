@@ -96,53 +96,6 @@ $(document).ready(function() {
                     createCallout(cardX, cardY, data, index);
 
                     // console.log('layerName: ', layer.name, " and happiness ", Math.round(data[index].scores.happiness * 100))
-                    // SHOW THE EMOTIONS-RESULTS WHEN THE MOUSE GOES OVER THE FIRST ONE
-                    // $('#emotion-results').show();
-                    // HAPPINESS BAR
-                    // $('#happiness').progressbar({
-                        // value: Math.round(data[index].scores.happiness * 100),
-                    // });
-                    // $('#happiness > div').css({'background': '#ff6562'});
-                    // //SADNESS BAR
-                    // $('#sadness').progressbar({
-                    //     value: Math.round(data[index].scores.sadness * 100)
-                    // });
-                    // $('#sadness > div').css({'background': '#6c9cf8'});
-                    // //SURPRISE BAR
-                    // $('#surprise').progressbar({
-                    //     value: Math.round(data[index].scores.surprise * 100)
-                    // });
-                    // $('#surprise > div').css({'background': '#ffcd10'});
-                    // //NEUTRAL BAR
-                    // $('#neutral').progressbar({
-                    //     value: Math.round(data[index].scores.neutral * 100)
-                    // });
-                    // $('#neutral > div').css({'background': '#grey'});
-                    // //FEAR BAR
-                    // $('#fear').progressbar({
-                    //     value: Math.round(data[index].scores.fear * 100)
-                    // });
-                    // $('#fear > div').css({'background': 'black'});
-                    // //DISGUST BAR
-                    // $('#disgust').progressbar({
-                    //     value: Math.round(data[index].scores.disgust * 100)
-                    // });
-                    // $('#disgust > div').css({'background': '#50b94f'});
-                    // //ANGER BAR
-                    // $('#anger').progressbar({
-                    //     value: Math.round(data[index].scores.anger * 100)
-                    // });
-                    // $('#anger > div').css({'background': '#b53200'});
-                    // //CONTEMPT BAR
-                    // $('#contempt').progressbar({
-                    //     value: Math.round(data[index].scores.contempt * 100)
-                    // });
-                    // $('#contempt > div').css({'background': '#ff6d00'});
-
-                    // console.log('x:', data[index].faceRectangle.left, 'y:', data[index].faceRectangle.top);
-
-                    //location for the div with progrees bars to start
-                    // console.log('x with 80% width:', data[index].faceRectangle.left + ((data[index].faceRectangle.width)*.8), 'y with 80% height:', data[index].faceRectangle.top + ((data[index].faceRectangle.height)*.8));
                 },
                 mouseout: function () {
                   $('div.callout').remove();
