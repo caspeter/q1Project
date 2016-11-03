@@ -2,6 +2,7 @@
 $(document).ready(function() {
     //hide the emotions-results on load
     // $('#emotion-results').toggle();
+
     //GLOBAL VARIABLES
     //where the input url will go, stored globally
     var body = {
@@ -13,7 +14,7 @@ $(document).ready(function() {
     var addImg = $("<img>");
     //add the image tag into the emotion-img div
     $('#emotion-img').append(addImg);
-
+    //blank canvases array for removing them on a new click
     var canvases = [];
 
     ////////////////////////////////////////////////////////
@@ -108,22 +109,20 @@ $(document).ready(function() {
         for (var i = 0; i < canvases.length; i++) {
             myCanvas.removeLayer('layer' + i).drawLayers();
         }
+        //clear the canvases array
         canvases = [];
     }
 
-
     function urlSubmitClick() {
+        //clear canvas so that the old boxes go away using the clearCanvases function
         clearCanvases();
-        // $('#emotion-results').hide();
+
         //grab the value from the input area
         var inputVal = $('input').val();
         //set the object body key url to the input value
         body.url = inputVal;
-        // console.log(body); //this shows that the url has changed
         //change the body object into something JSON can read
         body = JSON.stringify(body);
-        //clear canvas so that the old boxes go away
-        // myCanvas.clearCanvas();
 
         var image = new Image();
         image.src = inputVal;
@@ -133,6 +132,7 @@ $(document).ready(function() {
         };
 
         //clear the input value so it can accept a new one
+
         $('input').val('');
 
         //XMLHttp Request
@@ -141,7 +141,7 @@ $(document).ready(function() {
         //once the post is finished, do this with the data
         $xhr.done(function(data) {
             if ($xhr.status !== 200) {
-              //make sure the body is parsed for next entery
+                //make sure the body is parsed for next entery
                 body = JSON.parse(body);
                 return;
             }
@@ -150,12 +150,12 @@ $(document).ready(function() {
             console.log(data); //log the data into the console
             //parse the body back into an object for the next input
             body = JSON.parse(body);
-
+            //run the function displayBoxes on the data
             displayBoxes(data);
         });
         $xhr.fail(function(data) {
             if ($xhr.status === 400) {
-              //make sure the body is parsed for next entery
+                //make sure the body is parsed for next entery
                 body = JSON.parse(body);
                 Materialize.toast('Please enter a valid URL', 4000, 'orange accent-4');
                 return
