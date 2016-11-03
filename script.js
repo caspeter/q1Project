@@ -19,7 +19,7 @@ $(document).ready(function() {
     ////////////////////////////////////////////////////////
 
     function createCallout(x_pos, y_pos,data,index) {
-      var buildCalloutDiv = $('<div class="callout"><div class="row" id="emotion-results"><span class="col s6">Happiness</span><div id="happiness"></div><p>Sadness</p><div id="sadness"></div><p>Surprise</p><div id="surprise"></div><p>Neutral</p><div id="neutral"></div><p>Fear</p><div id="fear"></div><p>Disgust</p><div id="disgust"></div><p>Anger</p><div id="anger"></div><p>Contempt</p><div id="contempt"></div></div></div>');
+      var buildCalloutDiv = $('<div class="callout"><div id="emotion-results"><div class="row"><span class="col s4">Happiness</span><div id="happiness"></div></div> <div class="row"><span class="col s4">Sadness</span><div id="sadness"></div></div> <div class="row"><span class="col s4">Surprise</span><div id="surprise"></div></div> <div class="row"><span class="col s4">Neutral</span><div id="neutral"></div></div> <div class="row"><span class="col s4">Fear</span><div id="fear"></div></div> <div class="row"><span class="col s4">Disgust</span><div id="disgust"></div></div> <div class="row"><span class="col s4">Anger</span><div id="anger"></div></div> <div class="row"><span class="col s4">Contempt</span><div id="contempt"></div></div></div></div>');
       $('#emotion-img').append(buildCalloutDiv);
       var theCallout = $('.callout');
       theCallout.css({"left": x_pos, "top": y_pos});
