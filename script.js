@@ -1,5 +1,6 @@
 'use strict';
 $(document).ready(function() {
+    //hide the emotions-results on load
     $('#emotion-results').toggle();
     //GLOBAL VARIABLES
     //where the input url will go, stored globally
@@ -17,23 +18,27 @@ $(document).ready(function() {
 
     ////////////////////////////////////////////////////////
 
+    function createCard(x_pos, y_pos,data,index) {
+      var buildCard = $('<div class="row"><div class= "col s12 m4"><div class="card blue-grey darken-1"><div class="card-content white-text"><p></p></div></div></div></div>');
+
+      var hapBar = $('#happiness').progressbar({
+          value: Math.round(data[index].scores.happiness * 100),
+      });
+      buildCard.add(hapBar);
+      // $('#happiness > div').css({'background': '#ff6562'});
+      buildCard.position = 'absolute';
+      buildCard.css('top', x_pos);
+      buildCard.css('left',y_pos);
+      $('#emotion-img').append(buildCard);
+    };
+
     //to iterate over the boxes data
     function displayBoxes(data) {
-        // var canvases = [];
-        // for (var canavs in canvases) {
-        //   myCanvas.clearCanvas();
-        // }
         //for each object in the array, each person
         for (var i = 0; i < data.length; i++) {
             canvases.push([i]);
-            // console.log('object in data: ', data[i]); // this gets the individual object (one person's data)
-            //Get faceRectangle
+            //get the dimentions of the faceRectangle
             var faceRectangleDim = data[i].faceRectangle;
-            // console.log(faceRectangleDim);
-            var faceHappiness = data[i].scores.happiness;
-            // console.log(faceHappiness);
-            // console.log('creating rectangle ', data[i].faceRectangle);
-            // console.log('object[i].faceRectangle: ', faceRectangleDim); //get the dimentions of the faceRectangle
 
             // MAKE BOXES ON jCANVAS
             myCanvas.drawRect({
@@ -50,10 +55,14 @@ $(document).ready(function() {
                 intangible: false,
                 mouseover: function(layer) {
                     var index = layer.name.replace('layer', '');
-                    // console.log('layerName: ', layer.name, " and happiness ", Math.round(data[index].scores.happiness * 100))
-                        // console.log('layerName: ', layer.name, " and scores: ", JSON.stringify(data[layer.name].scores))
-                    $('#emotion-results').show();
+                    //TO CREATE THE CARD
+                    var cardX = data[index].faceRectangle.left + ((data[index].faceRectangle.width)*.8);
+                    var cardY = data[index].faceRectangle.top + ((data[index].faceRectangle.height)*.8);
+                    createCard(cardX, cardY, data, index);
 
+                    // console.log('layerName: ', layer.name, " and happiness ", Math.round(data[index].scores.happiness * 100))
+                    // SHOW THE EMOTIONS-RESULTS WHEN THE MOUSE GOES OVER THE FIRST ONE
+                    $('#emotion-results').show();
                     //HAPPINESS BAR
                     $('#happiness').progressbar({
                         value: Math.round(data[index].scores.happiness * 100),
@@ -94,30 +103,32 @@ $(document).ready(function() {
                         value: Math.round(data[index].scores.contempt * 100)
                     });
                     $('#contempt > div').css({'background': '#ff6d00'});
+
+                    // console.log('x:', data[index].faceRectangle.left, 'y:', data[index].faceRectangle.top);
+
+                    //location for the div with progrees bars to start
+                    console.log('x with 80% width:', data[index].faceRectangle.left + ((data[index].faceRectangle.width)*.8), 'y with 80% height:', data[index].faceRectangle.top + ((data[index].faceRectangle.height)*.8));
+
+                    $('<div/>');
+
                 }
             });
         };
     };
 
     function clearCanvases() {
-        console.log(canvases);
         for (var i = 0; i < canvases.length; i++) {
             myCanvas.removeLayer('layer' + i).drawLayers();
         }
         canvases = [];
-        // for (var canvas in canvases) {
-        //   myCanvas.removeLayer();
-        // }
     }
 
 
     function urlSubmitClick() {
         clearCanvases();
         $('#emotion-results').hide();
-        // console.log(body, 'first body'); //shows the what was in the url value when we start
         //grab the value from the input area
         var inputVal = $('input').val();
-        // console.log('inputVal: ' + inputVal); //shows what was inputed
         //set the object body key url to the input value
         body.url = inputVal;
         // console.log(body); //this shows that the url has changed
@@ -129,14 +140,10 @@ $(document).ready(function() {
         var image = new Image();
         image.src = inputVal;
         image.onload = function() {
-            // console.log(this.height, this.width)
-            //console.log($('canvas'));
             myCanvas.attr('height', this.height);
             myCanvas.attr('width', this.width);
         };
 
-
-        // console.log($('#emotion-img')); //make sure the img tag got into the div
         //clear the input value so it can accept a new one
         $('input').val('');
 
@@ -152,7 +159,7 @@ $(document).ready(function() {
             }
             //add the src to the img tag, the src being the input value
             $(addImg).attr("src", inputVal);
-            // console.log(data); //log the data into the console
+            console.log(data); //log the data into the console
             //parse the body back into an object for the next input
             body = JSON.parse(body);
 
