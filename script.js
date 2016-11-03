@@ -42,7 +42,7 @@ $(document).ready(function() {
       $('#neutral').progressbar({
           value: Math.round(data[index].scores.neutral * 100)
       });
-      $('#neutral > div').css({'background': '#grey'});
+      $('#neutral > div').css({'background': '#4F3F3A'});
       //FEAR BAR
       $('#fear').progressbar({
           value: Math.round(data[index].scores.fear * 100)
