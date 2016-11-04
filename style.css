@@ -1,4 +1,3 @@
-
 /*DIV WHERE THE INPUT IMAGE GOES*/
 
 #emotion-img {
@@ -10,10 +9,23 @@
 /*IMAGE INPUT DISPLAY*/
 
 img {
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+/*LOADING CIRCLE*/
+
+.preloader-wrapper-wrapper {
+    position: fixed;*/
+    top: 50%;
+    left: 50%;
+    z-index: 100;
+    /*background-color: rgba(50, 50, 50, 0.8);*/
+    transform: translate(-50%, -50%);
+    margin: auto;
+}
+
 
 /*PLACE CANVAS OVER IMAGE*/
 
@@ -21,8 +33,14 @@ img {
     position: absolute;
 }
 
+/*ROW MARGINS*/
+
 .row {
     margin-top: 20px;
+}
+
+.row {
+  margin: 1px !important;
 }
 
 /*LOGO STYLE*/
@@ -35,77 +53,80 @@ img {
     display: block;
 }
 
+
 /*FIX FOOTER STYLE*/
 
-footer{
-  margin-top: 15px;
+footer {
+    margin-top: 15px;
 }
 
 .footer-text {
-  margin: 0;
-  margin-left: 10px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+    margin: 0;
+    margin-top: 200px;
+    margin-left: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 /*PROGRESS BAR FIX*/
 
 .ui-progressbar .ui-progressbar-value {
-  margin: 0 !important;
+    margin: 0 !important;
 }
 
-.ui-progressbar{
-  width: auto;
-  /*height: 10px;*/
+.ui-progressbar {
+    width: auto;
+    /*height: 10px;*/
 }
 
 /*INPUT LINE COLOR - DOES NOT WORK*/
 
-.input-field input[type=text]:focus {
-    border-bottom: 1px solid #311b92;
-    box-shadow: 0 1px 0 0 #311b92;
+/* label focus color */
+  /*.input-field input[type=text]:focus + label {
+    color: black;
 }
-
-.input-field input[type=text].valid {
-    border-bottom: 1px solid #311b92;
-    box-shadow: 0 1px 0 0 #311b92;
-}
+/* label underline focus color */
+  /*.input-field input[type=text]:focus {
+    border-bottom: 1px solid red;
+    box-shadow: 0 1px 0 0 pink;
+  }*/
 
 /*CALLOUT STYLING*/
+
 div.callout {
-	min-height: 60px;
-	width: 300px;
-	float: left;
+    min-height: 60px;
+    width: 300px;
+    float: left;
 }
 
 div.callout {
-	background-color: #444;
-  opacity: .75;
-	background-image: -moz-linear-gradient(top, #444, #444);
-	position: absolute;
-	color: #ccc;
-	padding: 10px;
-	border-radius: 3px;
-	/*box-shadow: 0px 0px 20px #999;*/
-	margin: 25px;
-	min-height: 50px;
-	border: 1px solid #333;
-	text-shadow: 0 0 1px #000;
-
-	/*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;*/
+    background-color: #444;
+    opacity: .75;
+    background-image: -moz-linear-gradient(top, #444, #444);
+    position: absolute;
+    color: #ccc;
+    padding: 10px;
+    border-radius: 3px;
+    /*box-shadow: 0px 0px 20px #999;*/
+    margin: 25px;
+    min-height: 50px;
+    border: 1px solid #333;
+    text-shadow: 0 0 1px #000;
+    /*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset;*/
 }
 
 .callout::before {
-	content: "";
-	width: 0px;
-	height: 0px;
-	border: 0.8em solid transparent;
-	position: absolute;
-  left: -20px;
-	top: 5%;
-	border-right: 10px solid #444;
+    content: "";
+    width: 0px;
+    height: 0px;
+    border: 0.8em solid transparent;
+    position: absolute;
+    left: -20px;
+    top: 5%;
+    border-right: 10px solid #444;
 }
 
-.row{
-  margin: 1px !important;
-}
+
+/*.footer{
+  padding-bottom: 300px
+}*/
