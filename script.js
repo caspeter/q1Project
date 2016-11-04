@@ -116,7 +116,7 @@ $(document).ready(function() {
 
     function urlSubmitClick() {
         //clear canvas so that the old boxes go away using the clearCanvases function
-        clearCanvases();
+        // clearCanvases();
         $('.preloader-wrapper').removeClass('hide')
         //grab the value from the input area
         var inputVal = $('input').val();
@@ -147,6 +147,7 @@ $(document).ready(function() {
                 $('.preloader-wrapper').addClass('hide')
                 return;
             }
+            clearCanvases();
             //add the src to the img tag, the src being the input value
             $(addImg).attr("src", inputVal);
             console.log(data); //log the data into the console
