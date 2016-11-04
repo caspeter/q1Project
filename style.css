@@ -6,8 +6,15 @@
     margin-right: auto;
 }
 
+/*IMAGE INPUT DISPLAY*/
 
-/*loading circle*/
+img {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*LOADING CIRCLE*/
 
 .preloader-wrapper-wrapper {
     position: fixed;*/
@@ -20,25 +27,21 @@
 }
 
 
-/*IMAGE INPUT DISPLAY*/
-
-img {
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
 /*PLACE CANVAS OVER IMAGE*/
 
 #myCanvas {
     position: absolute;
 }
 
+/*ROW MARGINS*/
+
 .row {
     margin-top: 20px;
 }
 
+.row {
+  margin: 1px !important;
+}
 
 /*LOGO STYLE*/
 
@@ -64,7 +67,6 @@ footer {
     padding-bottom: 15px;
 }
 
-
 /*PROGRESS BAR FIX*/
 
 .ui-progressbar .ui-progressbar-value {
@@ -76,19 +78,17 @@ footer {
     /*height: 10px;*/
 }
 
-
 /*INPUT LINE COLOR - DOES NOT WORK*/
 
 /* label focus color */
-  .input-field input[type=text]:focus + label {
+  /*.input-field input[type=text]:focus + label {
     color: black;
 }
 /* label underline focus color */
-  .input-field input[type=text]:focus {
+  /*.input-field input[type=text]:focus {
     border-bottom: 1px solid red;
     box-shadow: 0 1px 0 0 pink;
-  }
-
+  }*/
 
 /*CALLOUT STYLING*/
 
@@ -123,8 +123,4 @@ div.callout {
     left: -20px;
     top: 5%;
     border-right: 10px solid #444;
-}
-
-.row {
-    margin: 1px !important;
 }
