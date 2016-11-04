@@ -62,6 +62,7 @@ footer {
 
 .footer-text {
     margin: 0;
+    margin-top: 200px;
     margin-left: 10px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -124,3 +125,8 @@ div.callout {
     top: 5%;
     border-right: 10px solid #444;
 }
+
+
+/*.footer{
+  padding-bottom: 300px
+}*/
