@@ -117,7 +117,7 @@ $(document).ready(function() {
     function urlSubmitClick() {
         //clear canvas so that the old boxes go away using the clearCanvases function
         clearCanvases();
-
+        $('.preloader-wrapper').removeClass('hide')
         //grab the value from the input area
         var inputVal = $('input').val();
         //set the object body key url to the input value
@@ -153,6 +153,7 @@ $(document).ready(function() {
             body = JSON.parse(body);
             //run the function displayBoxes on the data
             displayBoxes(data);
+            $('.preloader-wrapper').addClass('hide')
         });
         $xhr.fail(function(data) {
             if ($xhr.status === 400) {
