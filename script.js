@@ -29,6 +29,7 @@ $(document).ready(function() {
           value: Math.round(data[index].scores.happiness * 100),
       });
       $('#happiness > div').css({'background': '#ff6562'});
+
       //SADNESS BAR
       $('#sadness').progressbar({
           value: Math.round(data[index].scores.sadness * 100)
@@ -91,7 +92,7 @@ $(document).ready(function() {
                     var index = layer.name.replace('layer', '');
                     //TO CREATE THE CARD
                     // console.log("x: ", (layer.eventX + layer.event.currentTarget.offsetLeft) , " y: ", layer.eventY);
-                    var cardX = data[index].faceRectangle.left + layer.event.currentTarget.offsetLeft + ((data[index].faceRectangle.width)*.6);
+                    var cardX = data[index].faceRectangle.left + layer.event.currentTarget.offsetLeft + ((data[index].faceRectangle.width)*.8);
                     var cardY = data[index].faceRectangle.top +
                     layer.event.currentTarget.offsetTop;// + ((data[index].faceRectangle.height)*.5);
                     createCallout(cardX, cardY, data, index);
