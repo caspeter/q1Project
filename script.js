@@ -144,6 +144,7 @@ $(document).ready(function() {
             if ($xhr.status !== 200) {
                 //make sure the body is parsed for next entery
                 body = JSON.parse(body);
+                $('.preloader-wrapper').addClass('hide')
                 return;
             }
             //add the src to the img tag, the src being the input value
@@ -159,6 +160,7 @@ $(document).ready(function() {
             if ($xhr.status === 400) {
                 //make sure the body is parsed for next entery
                 body = JSON.parse(body);
+                $('.preloader-wrapper').addClass('hide')
                 Materialize.toast('Please enter a valid URL', 4000, 'orange accent-4');
                 return
             }
