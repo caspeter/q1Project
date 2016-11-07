@@ -29,7 +29,7 @@ $(document).ready(function() {
           value: Math.round(data[index].scores.happiness * 100),
       });
       $('#happiness > div').css({'background': '#ff6562'});
-
+      $('#happiness').children().animate(.this, 'slow')
       //SADNESS BAR
       $('#sadness').progressbar({
           value: Math.round(data[index].scores.sadness * 100)
@@ -65,6 +65,7 @@ $(document).ready(function() {
           value: Math.round(data[index].scores.contempt * 100)
       });
       $('#contempt > div').css({'background': '#ff6d00'});
+
     };
 
     //to iterate over the boxes data
