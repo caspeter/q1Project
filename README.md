@@ -8,7 +8,7 @@ This site was designed to read emotions from inputted images and display their e
 
 This was created with HTML, Materialize, CSS, JavaScript, jQuery, jCanvas, jQuery UI and Microsoft Cognitive Services Emotion API.
 
-![Landing Page]([q1Project](ScreenShots/landingPage.png)
+![Landing Page](ScreenShots/landingPage.png)
 
 
 
