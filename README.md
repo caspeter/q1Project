@@ -13,8 +13,6 @@ This was created with HTML, Materialize, CSS, JavaScript, jQuery, jCanvas, jQuer
 
 
 
-
-
 //////////////////////////////////////////////////////////////
 AFTER
 
