@@ -32,8 +32,8 @@ Once you have this image displayed you can hover over any of the boxes and see t
 
 ![Show Emotions](ScreenShots/progressBar.png)
 
-### YouTube Demo
+### Video Demo
 
-Check out [this YouTube video](https://youtu.be/uhANx0dxOuY) for additional information:
+Check out [this video](https://youtu.be/uhANx0dxOuY) for additional information:
 
 [![ReadMe YouTube Video](https://img.youtube.com/vi/uhANx0dxOuY/0.jpg)](https://youtu.be/uhANx0dxOuY)
