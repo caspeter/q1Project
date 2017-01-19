@@ -27,6 +27,6 @@ Once you have this image displayed you can hover over any of the boxes and see t
 ![Show Emotions](ScreenShots/progressBar.png)
 
 Check out this YouTube video for additional information:
-[YouTube video](https://youtu.be/uhANx0dxOuY)]
+[YouTube video](https://youtu.be/uhANx0dxOuY)
 
 SURGE: caspeter-q1-project.surge.sh
