@@ -12,6 +12,8 @@ This was created with HTML, Materialize, CSS, JavaScript, jQuery, jCanvas, jQuer
 
 ------
 
+### Walkthrough
+
 This is the landing page. It is simple with very little to distract the user. It has a header with the logo and name, instructions on how to use the site, and an input area for the image URL.
 
 ![Landing Page](ScreenShots/landingPage.png)
@@ -24,9 +26,13 @@ Then submit the image with the GET EMOTIONS button and your image will appear wi
 
 ![View inputted image](ScreenShots/drawFaces.png)
 
+
+
 Once you have this image displayed you can hover over any of the boxes and see their emotions.
 
 ![Show Emotions](ScreenShots/progressBar.png)
+
+### YouTube Demo
 
 Check out [this YouTube video](https://youtu.be/uhANx0dxOuY) for additional information:
 
