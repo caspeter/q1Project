@@ -1,9 +1,5 @@
 'use strict';
 $(document).ready(function() {
-    //hide the emotions-results on load
-    // $('#emotion-results').toggle();
-
-    //GLOBAL VARIABLES
     //where the input url will go, stored globally
     var body = {
         url: ''
@@ -65,7 +61,7 @@ $(document).ready(function() {
       });
       $('#contempt > div').css({'background': '#ff6d00'});
 
-    };
+    }
 
     //to iterate over the boxes data
     function displayBoxes(data) {
@@ -91,20 +87,17 @@ $(document).ready(function() {
                 mouseover: function(layer) {
                     var index = layer.name.replace('layer', '');
                     //TO CREATE THE CARD
-                    // console.log("x: ", (layer.eventX + layer.event.currentTarget.offsetLeft) , " y: ", layer.eventY);
                     var cardX = data[index].faceRectangle.left + layer.event.currentTarget.offsetLeft + ((data[index].faceRectangle.width)*.8);
                     var cardY = data[index].faceRectangle.top +
                     layer.event.currentTarget.offsetTop;// + ((data[index].faceRectangle.height)*.5);
                     createCallout(cardX, cardY, data, index);
-
-                    // console.log('layerName: ', layer.name, " and happiness ", Math.round(data[index].scores.happiness * 100))
                 },
                 mouseout: function () {
                   $('div.callout').remove();
                 }
             });
-        };
-    };
+        }
+    }
 
     function clearCanvases() {
         for (var i = 0; i < canvases.length; i++) {
@@ -115,8 +108,6 @@ $(document).ready(function() {
     }
 
     function urlSubmitClick() {
-        //clear canvas so that the old boxes go away using the clearCanvases function
-        // clearCanvases();
         $('.preloader-wrapper').removeClass('hide')
         //grab the value from the input area
         var inputVal = $('input').val();
@@ -144,7 +135,7 @@ $(document).ready(function() {
             if ($xhr.status !== 200) {
                 //make sure the body is parsed for next entery
                 body = JSON.parse(body);
-                $('.preloader-wrapper').addClass('hide')
+                $('.preloader-wrapper').addClass('hide');
                 return;
             }
             clearCanvases();
@@ -161,12 +152,12 @@ $(document).ready(function() {
             if ($xhr.status === 400) {
                 //make sure the body is parsed for next entery
                 body = JSON.parse(body);
-                $('.preloader-wrapper').addClass('hide')
+                $('.preloader-wrapper').addClass('hide');
                 Materialize.toast('Please enter a valid URL', 4000, 'orange accent-4');
-                return
+                return;
             }
-        })
-    };
+        });
+    }
 
     //EVENT LISTENER FOR THE GET EMOTIONS BUTTON
     $('#urlSubmit').on('click', urlSubmitClick);
